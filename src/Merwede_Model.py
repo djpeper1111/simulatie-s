@@ -10,22 +10,36 @@ import numpy as np
 import pandas as pd
 
 
-profile_df_dict = {}
-
-def scale_vehicles(df, new_count, base_count=167):
+def scale_vehicles_series(
+        df, 
+        new_count, 
+        base_count = 167
+    ):
     df_copy = df.copy()
+    
     if "vehicles" in df_copy.columns:
         factor = new_count / base_count
         df_copy["vehicles"] = df_copy["vehicles"] * factor
+    
     return df_copy
 
-def generate_graphs(new_count, profiles_folder):
+def get_profile_df(
+        new_vehicle_count,
+        profiles_folder
+    ):
+    profile_df_dict = {}
+    
     for file_path in profiles_folder.glob("*.csv"):
         clean_key = file_path.stem.split(" - ")[-1]
         df = pd.read_csv(file_path).set_index("time")
-        profile_df_dict[clean_key] = scale_vehicles(df, new_count)
-    
-    
+        
+        profile_df_dict[clean_key] = scale_vehicles_series(df, new_vehicle_count)
+        
+    return profile_df_dict
+
+def generate_graphs(
+        profile_df_dict
+    ):
     for profile_key, profile_df in profile_df_dict.items():
         ax = profile_df.plot.area(figsize=(10, 6), alpha=0.75)
         
