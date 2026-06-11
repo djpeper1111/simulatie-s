@@ -40,8 +40,12 @@ def get_profile_df(
 def generate_graphs(
         profile_df_dict
     ):
+    graphs = {}
+
     for profile_key, profile_df in profile_df_dict.items():
-        ax = profile_df.plot.area(figsize=(10, 6), alpha=0.75)
+        graph, ax = plt.subplots(figsize=(10, 6))
+
+        profile_df.plot.area(ax=ax, alpha=0.75)
         
         # get all the complete hours, the first of every 4 rows
         tick_intervals = np.arange(0, len(profile_df), 4)
@@ -51,8 +55,12 @@ def generate_graphs(
         ax.set_xticks(tick_intervals)
         ax.set_xticklabels(tick_labels, rotation=45, ha="right", fontsize=9)
         
-        plt.ylim(0, 7000)
-        plt.title(profile_key, fontsize=14, fontweight="bold")
-        plt.xlabel("Hours", fontsize=12, fontweight="bold")
-        plt.ylabel("kW", fontsize=12, fontweight="bold")
-        plt.grid(True, linestyle="--", alpha=0.5)
+        ax.set_ylim(0, 7000)
+        ax.set_title(profile_key, fontsize=14, fontweight="bold")
+        ax.set_xlabel("Hours", fontsize=12, fontweight="bold")
+        ax.set_ylabel("kW", fontsize=12, fontweight="bold")
+        ax.grid(True, linestyle="--", alpha=0.5)
+
+        graphs[profile_key] = graph
+    
+    return graphs
