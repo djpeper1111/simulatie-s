@@ -1,9 +1,9 @@
-from src.Merwede_Model import generate_graphs, get_profile_df
-from pdf_generator import generate_pdf
+from src.merwede_model import generate_graphs, get_profile_df
+from src.pdf_generator import generate_pdf
 from pathlib import Path
 import sys
 
-ev_count = 200
+ev_count = 0
 profiles_folder = Path("data/Merwede_Profiles")
 
 def generate_graphs_only():
