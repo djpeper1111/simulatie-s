@@ -5,8 +5,8 @@ Created on Thu Jun 11 13:47:58 2026
 @author: Luuk
 """
 
-from src.merwede_model import process_profiles
-from src.merwede_grafiek import generate_graphs
+from src.profiel_model import process_profiles
+from src.profiel_grafiek import generate_profile_graphs
 
 from pathlib import Path
 
@@ -15,7 +15,7 @@ profiles_folder = Path("data/Merwede_Profiles")
 
 def main():
     return (
-        generate_graphs(
+        generate_profile_graphs(
             process_profiles(
                 profiles_folder=profiles_folder,
                 vehicle_count=ev_count
