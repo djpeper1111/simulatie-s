@@ -24,7 +24,7 @@ GRID_LABLE_MAPPING = {
     "Min_Average_Battery_[%]": "Min Avg Battery [%]"
 }
 
-def generate_graphs(profile_df_dict: dict) -> dict:
+def generate_profile_graphs(profile_df_dict: dict) -> dict:
     """Iterates through profiles and generates a combined figure for each."""
     profile_graph_dict = {}
     
