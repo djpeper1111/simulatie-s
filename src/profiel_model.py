@@ -83,7 +83,8 @@ def process_profiles(
         vehicle_count = 167,
         car_capacity_kWh = 40,
         V2G_power_kW = 11,
-        limit_kW = 5000
+        limit_kW = 5000,
+        cos_phi = 0.9
     ):
     profile_df_dict = {}
     columns_to_sum = list(COLUMN_MAPPING.values())
@@ -103,6 +104,7 @@ def process_profiles(
         # Add and calculate columns
         df["Total_[kW]"] = df[columns_to_sum].sum(axis=1)
         df["Limit_[kW]"] = limit_kW
+        df["Total_[kVA]"] = df["Total_[kW]"] / cos_phi
         
         # Generation of the excess dataframe
         excess_df = pd.DataFrame(index=df.index)

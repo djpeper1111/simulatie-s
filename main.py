@@ -7,6 +7,7 @@ Created on Thu Jun 11 13:47:58 2026
 
 from src.profiel_model import process_profiles
 from src.profiel_grafiek import generate_profile_graphs
+from src.profiel_dimensionering import generate_profile_dimensions
 
 from pathlib import Path
 
@@ -20,12 +21,19 @@ def main():
                 profiles_folder=profiles_folder,
                 vehicle_count=ev_count
             )
-        ), 
-        process_profiles(
-            profiles_folder=profiles_folder,
-            vehicle_count=ev_count
+        ),
+        generate_profile_dimensions(
+            process_profiles(
+                profiles_folder=profiles_folder,
+                vehicle_count=ev_count
+            )
         )
+        # ,
+        # process_profiles(
+        #     profiles_folder=profiles_folder,
+        #     vehicle_count=ev_count
+        # )
     )
     
 if __name__ == "__main__":
-   profile_graph_dict, profile_df_dict = main()
+   profile_graph_dict, profile_dimensions_dict = main()
