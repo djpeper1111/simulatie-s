@@ -81,10 +81,10 @@ def analyze_excess(
 def process_profiles(
         profiles_folder,
         vehicle_count = 167,
+        cos_phi = 0.9,
         car_capacity_kWh = 40,
         V2G_power_kW = 11,
-        limit_kW = 5000,
-        cos_phi = 0.9
+        limit_kW = 5000
     ):
     profile_df_dict = {}
     columns_to_sum = list(COLUMN_MAPPING.values())

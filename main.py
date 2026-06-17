@@ -11,28 +11,25 @@ from src.profiel_dimensionering import generate_profile_dimensions
 
 from pathlib import Path
 
-ev_count = 167      
 profiles_folder = Path("data/Merwede_Profiles")
 
+ev_count = 167
+cos_phi = 0.9
+
 def main():
-    return (
+   profile_df_dict = process_profiles(
+        profiles_folder=profiles_folder,
+        vehicle_count=ev_count,
+        cos_phi=cos_phi
+   )
+   
+   return (
         generate_profile_graphs(
-            process_profiles(
-                profiles_folder=profiles_folder,
-                vehicle_count=ev_count
-            )
+            profile_df_dict
         ),
         generate_profile_dimensions(
-            process_profiles(
-                profiles_folder=profiles_folder,
-                vehicle_count=ev_count
-            )
+            profile_df_dict, cos_phi
         )
-        # ,
-        # process_profiles(
-        #     profiles_folder=profiles_folder,
-        #     vehicle_count=ev_count
-        # )
     )
     
 if __name__ == "__main__":
