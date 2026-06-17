@@ -14,8 +14,9 @@ def generate_pdf(graphs):
         pdf.savefig(fig)
         plt.close(fig)
 
-        for name, fig in graphs.items():
-            pdf.savefig(fig)
-            plt.close(fig)
+        for profile_name, graph_dict in graphs.items():
+            for graph_name, fig in graph_dict.items():
+                pdf.savefig(fig)
+                plt.close(fig)
 
     print("PDF opgeslagen in:", pdf_path)
