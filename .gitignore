@@ -1,0 +1,43 @@
+# ==============================================================================
+# Project Specific Ignores
+# ==============================================================================
+
+# Ignore the output directory (generated pdf's, graphs, or other results)
+output/
+
+# Microsoft Excel temporary/cache/lock files
+# (Prevents tracking the hidden files Excel creates while Parameters.xlsx is open)
+~$*.xlsx
+~$*.xlsm
+.~lock.*.csv#
+*.tmp
+
+# ==============================================================================
+# Spyder IDE Specifics
+# ==============================================================================
+
+# Spyder project settings and workspace history
+.spyproject/
+.spyderproject/
+.directory
+
+# ==============================================================================
+# Python & Environment Tooling
+# ==============================================================================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Conda / Virtual Environments (if created locally inside the project root)
+.conda/
+env/
+venv/
+.venv/
+
+# ==============================================================================
+# OS Clutter
+# ==============================================================================
+Thumbs.db
+.DS_Store

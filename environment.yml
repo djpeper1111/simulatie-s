@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.14
+  - python=3.12
   - spyder-kernels=3.*
   - spyder
   - cython
@@ -13,3 +13,4 @@ dependencies:
   - matplotlib
   - numpy
   - conda-lock
+  - git

@@ -1,0 +1,23 @@
+Kabel_ID,Netvlak,Spanningsniveau_kV,Geleider_Materiaal,Aantal_Aders,Doorsnede_mm2,Max_Amperage_A,Weerstand_Ohm_km,Isolatie_Type,Lengte_Indicatie_m
+10kV_Al_50,Middenspanning (MS),10,Aluminium,3,50,145,0.641,XLPE,1500
+10kV_Al_95,Middenspanning (MS),10,Aluminium,3,95,210,0.32,XLPE,1500
+10kV_Al_150,Middenspanning (MS),10,Aluminium,3,150,245,0.206,XLPE,1500
+10kV_Al_240,Middenspanning (MS),10,Aluminium,3,240,305,0.125,XLPE,1500
+10kV_Al_400,Middenspanning (MS),10,Aluminium,3,400,370,0.0778,XLPE,1500
+10kV_Cu_50,Middenspanning (MS),10,Koper,3,50,190,0.387,XLPE,1500
+10kV_Cu_95,Middenspanning (MS),10,Koper,3,95,280,0.193,XLPE,1500
+10kV_Cu_150,Middenspanning (MS),10,Koper,3,150,345,0.124,XLPE,1500
+10kV_Cu_240,Middenspanning (MS),10,Koper,3,240,410,0.0754,XLPE,1500
+10kV_Cu_400,Middenspanning (MS),10,Koper,3,400,490,0.047,XLPE,1500
+04kV_Al_50,Laagspanning (LS),0.4,Aluminium,4,50,62,0.641,PVC,200
+04kV_Al_95,Laagspanning (LS),0.4,Aluminium,4,95,118,0.32,XLPE,200
+04kV_Al_120,Laagspanning (LS),0.4,Aluminium,4,120,150,0.253,XLPE,200
+04kV_Al_150,Laagspanning (LS),0.4,Aluminium,4,150,188,0.206,XLPE,200
+04kV_Al_185,Laagspanning (LS),0.4,Aluminium,4,185,230,0.164,XLPE,200
+04kV_Al_240,Laagspanning (LS),0.4,Aluminium,4,240,300,0.125,XLPE,200
+04kV_Cu_50,Laagspanning (LS),0.4,Koper,4,50,100,0.387,PVC,200
+04kV_Cu_95,Laagspanning (LS),0.4,Koper,4,95,180,0.193,XLPE,200
+04kV_Cu_120,Laagspanning (LS),0.4,Koper,4,120,230,0.153,XLPE,200
+04kV_Cu_150,Laagspanning (LS),0.4,Koper,4,150,290,0.124,XLPE,200
+04kV_Cu_185,Laagspanning (LS),0.4,Koper,4,185,360,0.0991,XLPE,200
+04kV_Cu_240,Laagspanning (LS),0.4,Koper,4,240,425,0.0754,XLPE,200
