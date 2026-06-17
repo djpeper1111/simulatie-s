@@ -29,13 +29,15 @@ def generate_profile_graphs(profile_df_dict: dict) -> dict:
     profile_graph_dict = {}
     
     for profile_key, data_dict in profile_df_dict.items():
+        profile_graph_dict[profile_key] = {}
+        
         fig = _plot_single_profile(
             profile_key, 
             data_dict["profile"], 
             data_dict["excess"], 
             data_dict["metrics"]
         )
-        profile_graph_dict[profile_key] = fig
+        profile_graph_dict[profile_key]["profile"] = fig
         
     return profile_graph_dict
 

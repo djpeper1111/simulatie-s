@@ -23,14 +23,17 @@ def main():
         cos_phi=cos_phi
    )
    
+   profile_graph_dict = generate_profile_graphs(
+       profile_df_dict
+   )
+   
    return (
-        generate_profile_graphs(
-            profile_df_dict
-        ),
-        generate_profile_dimensions(
-            profile_df_dict, cos_phi
-        )
+       profile_df_dict,
+       
+       generate_profile_dimensions(
+            profile_df_dict, cos_phi, profile_graph_dict
+       )
     )
     
 if __name__ == "__main__":
-   profile_graph_dict, profile_dimensions_dict = main()
+   profile_df_dict, profile_graph_dict = main()
