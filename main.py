@@ -17,6 +17,10 @@ profiles_folder = Path("data/Merwede_Profiles")
 ev_count = 167
 cos_phi = 0.9
 
+def pdf():
+    # pdfs maken van profile_graph_dict
+    return
+
 def main():
    profile_df_dict = process_profiles(
         profiles_folder=profiles_folder,
