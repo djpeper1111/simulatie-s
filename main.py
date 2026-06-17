@@ -1,44 +1,73 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jun 11 13:47:58 2026
-
-@author: Luuk
-"""
+import sys
+import os
+from pathlib import Path
 
 from src.profiel_model import process_profiles
 from src.profiel_grafiek import generate_profile_graphs
 from src.profiel_dimensionering import generate_profile_dimensions
 from src.pdf_generator import generate_pdf
-from pathlib import Path
-import sys
+
+os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 profiles_folder = Path("data/Merwede_Profiles")
 
 ev_count = 167
 cos_phi = 0.9
 
-def pdf():
-    # pdfs maken van profile_graph_dict
-    return
+if len(sys.argv) >= 4:
+    # sys.argv[1] = command (pdf/update)
+    ev_count = int(sys.argv[2])
+    cos_phi = float(sys.argv[3])
 
-def main():
-   profile_df_dict = process_profiles(
+print("EV count =", ev_count)
+print("cos_phi =", cos_phi)
+
+
+def pdf():
+    profile_df_dict = process_profiles(
         profiles_folder=profiles_folder,
         vehicle_count=ev_count,
         cos_phi=cos_phi
-   )
-   
-   profile_graph_dict = generate_profile_graphs(
-       profile_df_dict
-   )
-   
-   return (
-       profile_df_dict,
-       
-       generate_profile_dimensions(
-            profile_df_dict, cos_phi, profile_graph_dict
-       )
     )
-    
+
+    profile_graphs = generate_profile_graphs(profile_df_dict)
+
+    profile_graphs = generate_profile_dimensions(
+        profile_df_dict, cos_phi, profile_graphs
+    )
+
+    generate_pdf(profile_graphs)
+
+    print("PDF succesvol gegenereerd.")
+
+
+def update():
+    print("Excel waardes doorgevoerd:")
+    print("EV count =", ev_count)
+    print("cos_phi =", cos_phi)
+
+
+def main():
+    profile_df_dict = process_profiles(
+        profiles_folder=profiles_folder,
+        vehicle_count=ev_count,
+        cos_phi=cos_phi
+    )
+
+    profile_graph_dict = generate_profile_graphs(profile_df_dict)
+
+    profile_graph_dict = generate_profile_dimensions(
+        profile_df_dict, cos_phi, profile_graph_dict
+    )
+
+    print("Main() uitgevoerd — geen PDF gemaakt.")
+    return profile_df_dict, profile_graph_dict
+
+
 if __name__ == "__main__":
-   profile_df_dict, profile_graph_dict = main()
+    if len(sys.argv) >= 2 and sys.argv[1] == "pdf":
+        pdf()
+    elif len(sys.argv) >= 2 and sys.argv[1] == "update":
+        update()
+    else:
+        main()
