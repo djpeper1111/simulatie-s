@@ -8,8 +8,9 @@ Created on Thu Jun 11 13:47:58 2026
 from src.profiel_model import process_profiles
 from src.profiel_grafiek import generate_profile_graphs
 from src.profiel_dimensionering import generate_profile_dimensions
-
+from src.pdf_generator import generate_pdf
 from pathlib import Path
+import sys
 
 profiles_folder = Path("data/Merwede_Profiles")
 
