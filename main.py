@@ -7,60 +7,47 @@ from src.profiel_grafiek import generate_profile_graphs
 from src.profiel_dimensionering import generate_profile_dimensions
 from src.pdf_generator import generate_pdf
 
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
-
-profiles_folder = Path("data/Merwede_Profiles")
-
-ev_count = 200
-cos_phi = 0.9
-
-if len(sys.argv) >= 4:
-    # sys.argv[1] = command (pdf/update)
-    ev_count = int(sys.argv[2])
-    cos_phi = float(sys.argv[3])
-
-print("EV count =", ev_count)
-print("cos_phi =", cos_phi)
+PROFILES_FOLDER = Path("data/Merwede_Profiles")
+DEFAULT_EV_COUNT = 167
+DEFAULT_COS_PHI = 0.9
 
 
-def pdf():
-    
-    
+def run_pipeline(ev_count: int, cos_phi: float):
     profile_df_dict = process_profiles(
-        profiles_folder=profiles_folder,
-        vehicle_count=ev_count,
-        cos_phi=cos_phi
-    )
-
-    profile_graphs = generate_profile_graphs(profile_df_dict)
-
-    profile_graphs = generate_profile_dimensions(
-        profile_df_dict, cos_phi, profile_graphs
-    )
-
-    generate_pdf(profile_graphs, ev_count, cos_phi)
-
-    print("PDF succesvol gegenereerd.")
-
-def main():
-    profile_df_dict = process_profiles(
-        profiles_folder=profiles_folder,
+        profiles_folder=PROFILES_FOLDER,
         vehicle_count=ev_count,
         cos_phi=cos_phi
     )
 
     profile_graph_dict = generate_profile_graphs(profile_df_dict)
-
+    
     profile_graph_dict = generate_profile_dimensions(
         profile_df_dict, cos_phi, profile_graph_dict
     )
+    
+    return profile_df_dict, profile_graph_dict
 
-    print("Main() uitgevoerd — geen PDF gemaakt.")
+
+def main():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+
+    mode = sys.argv[1] if len(sys.argv) > 1 else "main"
+    ev_count = int(sys.argv[2]) if len(sys.argv) > 2 else DEFAULT_EV_COUNT
+    cos_phi = float(sys.argv[3]) if len(sys.argv) > 3 else DEFAULT_COS_PHI
+
+    print(f"Running mode: {mode}")
+    print(f"EV count     = {ev_count}")
+    print(f"cos_phi      = {cos_phi}")
+
+    profile_df_dict, profile_graph_dict = run_pipeline(ev_count, cos_phi)
+
+    if mode == "pdf":
+        generate_pdf(profile_graph_dict, ev_count, cos_phi)
+    else:
+        print("Main() uitgevoerd — geen PDF gemaakt.")
+        
     return profile_df_dict, profile_graph_dict
 
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2 and sys.argv[1] == "pdf":
-        pdf()
-    else:
-        profile_df_dict, profile_graph_dict = main()
+    profile_df_dict, profile_graph_dict = main()
