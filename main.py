@@ -24,7 +24,7 @@ print("cos_phi =", cos_phi)
 
 
 def pdf():
-    cos_phi
+    
     
     profile_df_dict = process_profiles(
         profiles_folder=profiles_folder,
@@ -38,16 +38,9 @@ def pdf():
         profile_df_dict, cos_phi, profile_graphs
     )
 
-    generate_pdf(profile_graphs)
+    generate_pdf(profile_graphs, ev_count, cos_phi)
 
     print("PDF succesvol gegenereerd.")
-
-
-def update():
-    print("Excel waardes doorgevoerd:")
-    print("EV count =", ev_count)
-    print("cos_phi =", cos_phi)
-
 
 def main():
     profile_df_dict = process_profiles(
@@ -69,7 +62,5 @@ def main():
 if __name__ == "__main__":
     if len(sys.argv) >= 2 and sys.argv[1] == "pdf":
         pdf()
-    elif len(sys.argv) >= 2 and sys.argv[1] == "update":
-        update()
     else:
         profile_df_dict, profile_graph_dict = main()
