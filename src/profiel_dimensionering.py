@@ -98,14 +98,14 @@ def select_assets(dimension_metrics):
         asset["trafo_rows"] = [
             [
                 "MS Transformator",
-                f"Primair: {ms_trafo['Primaire_kV']} kV\Secundair: {ms_trafo['Secundaire_kV']} kV\nGrens: {ms_trafo['Vermogen_kVA']} kVA",
+                f"Primair: {ms_trafo['Primaire_kV']} kV\nSecundair: {ms_trafo['Secundaire_kV']} kV\nGrens: {ms_trafo['Vermogen_kVA']} kVA",
                 f"Schakeling: {ms_trafo['Schakeling']}\nKorstluitspanning: {ms_trafo['Kortsluitspanning_Procent']}%\nKortsluitverlies: {ms_trafo['Kortsluitverlies_W']} W",
                 f"B: {ms_trafo['Breedte_mm']} mm\nL: {ms_trafo['Lengte_mm']} mm\nH: {ms_trafo['Hoogte_mm']} mm",
                 number_ms_trafos
             ],
             [
                 "LS Transformator",
-                f"Primair: {ls_trafo['Primaire_kV']} kV\Secundair: {ls_trafo['Secundaire_kV']} kV\nGrens: {ls_trafo['Vermogen_kVA']} kVA",
+                f"Primair: {ls_trafo['Primaire_kV']} kV\nSecundair: {ls_trafo['Secundaire_kV']} kV\nGrens: {ls_trafo['Vermogen_kVA']} kVA",
                 f"Schakeling: {ls_trafo['Schakeling']}\nKorstluitspanning: {ls_trafo['Kortsluitspanning_Procent']}%\nKortsluitverlies: {ls_trafo['Kortsluitverlies_W']} W",
                 f"B: {ls_trafo['Breedte_mm']} mm\nL: {ls_trafo['Lengte_mm']} mm\nH: {ls_trafo['Hoogte_mm']} mm",
                 number_ls_trafos
@@ -119,7 +119,7 @@ def select_assets(dimension_metrics):
         
         ls_amps = dimension_metric["LS_kA"] * 1000
         ls_cable = ls_cables[ls_cables["Max_Amperage_A"] >= ls_amps].iloc[0]
-        ls_res_total = ms_cable["Weerstand_Ohm_km"] * (ms_cable["Lengte_Indicatie_m"] / 1000.0)
+        ls_res_total = ls_cable["Weerstand_Ohm_km"] * (ls_cable["Lengte_Indicatie_m"] / 1000.0)
         ls_v_drop = math.sqrt(3) * ls_amps * ls_res_total
         
         asset["cable_rows"] = [
