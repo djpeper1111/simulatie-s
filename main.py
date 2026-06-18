@@ -11,7 +11,7 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 profiles_folder = Path("data/Merwede_Profiles")
 
-ev_count = 167
+ev_count = 200
 cos_phi = 0.9
 
 if len(sys.argv) >= 4:
@@ -24,6 +24,8 @@ print("cos_phi =", cos_phi)
 
 
 def pdf():
+    cos_phi
+    
     profile_df_dict = process_profiles(
         profiles_folder=profiles_folder,
         vehicle_count=ev_count,
@@ -70,4 +72,4 @@ if __name__ == "__main__":
     elif len(sys.argv) >= 2 and sys.argv[1] == "update":
         update()
     else:
-        main()
+        profile_df_dict, profile_graph_dict = main()
